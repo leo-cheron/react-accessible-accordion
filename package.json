@@ -147,5 +147,8 @@
                 "yarn lint"
             ]
         }
+    },
+    "dependencies": {
+        "yarn": "^1.22.17"
     }
 }

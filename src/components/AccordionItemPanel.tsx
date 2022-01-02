@@ -1,33 +1,90 @@
 import * as React from 'react';
-import { DivAttributes } from '../helpers/types';
-import { assertValidHtmlId } from '../helpers/uuid';
-import { Consumer as ItemConsumer, ItemContext } from './ItemContext';
+import {TransitionEvent} from 'react';
+import {DivAttributes} from '../helpers/types';
+import {assertValidHtmlId} from '../helpers/uuid';
+import {Consumer as ItemConsumer, ItemContext} from './ItemContext';
 
-type Props = DivAttributes & { region?: boolean; className?: string };
+type Props = DivAttributes & {region?: boolean; className?: string; animated?: boolean};
+type PanelProps = DivAttributes & {region?: boolean; className?: string; animated?: boolean; hidden?: boolean};
 
+const Panel = ({
+    className,
+    hidden = false,
+    animated,
+    ...rest
+}: PanelProps): JSX.Element => {
+    const firstRender = React.useRef(true);
+    const ref = React.useRef<HTMLDivElement>(null);
+    const refContent = React.useRef<HTMLDivElement>(null);
+
+    if (animated) {
+        React.useEffect(() => {
+            if (!firstRender.current && ref.current && refContent.current) {
+                const height = refContent.current.offsetHeight;
+                if (!hidden) {
+                    ref.current.style.height = `${height}px`;
+                } else if (hidden) {
+                    ref.current.style.height = `${height}px`;
+                    requestAnimationFrame(() => {
+                        if(ref.current) ref.current.style.height = '0';
+                    })
+                }
+            }
+            firstRender.current = false;
+        }, [hidden])
+    }
+
+    const handleTransitionEnd = (event: TransitionEvent<HTMLDivElement>) => {
+        if (event.currentTarget && event.propertyName === 'height') {
+            (event.currentTarget as HTMLDivElement).style.height = hidden ? '0' : 'auto';
+        }
+    }
+
+    const renderChildren = (hidden: boolean) => (
+        <div
+            ref={refContent}
+            data-accordion-component="AccordionItemPanel"
+            className={className}
+            hidden={hidden}
+            {...rest} />
+    )
+
+    return (
+        <>
+            {animated ? (
+                <div ref={ref} hidden={hidden} className={`${className}-wrapper`} onTransitionEnd={handleTransitionEnd}>
+                    {renderChildren(false)}
+                </div>
+            ) : (
+                renderChildren(hidden)
+            )}
+        </>
+    )
+}
 const AccordionItemPanel = ({
     className = 'accordion__panel',
     region,
+    animated,
     id,
     ...rest
 }: Props): JSX.Element => {
-    const renderChildren = ({ panelAttributes }: ItemContext): JSX.Element => {
+    const renderChildren = ({panelAttributes}: ItemContext): JSX.Element => {
         if (id) {
             assertValidHtmlId(id);
         }
-
         const attrs = {
             ...panelAttributes,
             'aria-labelledby': region ? panelAttributes['aria-labelledby'] : undefined,
         };
 
         return (
-            <div
+            <Panel
                 data-accordion-component="AccordionItemPanel"
                 className={className}
+                animated={animated}
                 {...rest}
                 {...attrs}
-                role={region ? 'region': undefined}
+                role={region ? 'region' : undefined}
             />
         );
     };

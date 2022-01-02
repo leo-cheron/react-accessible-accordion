@@ -25,6 +25,7 @@ import {
     ExampleOnChange,
     ExampleAccordionItemState,
     ExampleDangerouslySetExpanded,
+	ExampleAnimated,
 } from './code-examples';
 
 // tslint:disable-next-line no-import-side-effect
@@ -137,6 +138,27 @@ const App = (): JSX.Element => (
         </Accordion>
 
         <Code code={ExampleAllowZeroExpanded} />
+
+		<h2 className="u-margin-top">Animate panel expansion</h2>
+
+        <p>
+            If you set <strong>animated</strong> attribute to AccordionItemPanel, panel expansition will be animated.
+        </p>
+
+        <Accordion allowZeroExpanded={true}>
+            {placeholders.map((placeholder: Placeholder) => (
+                <AccordionItem key={placeholder.heading}>
+                    <AccordionItemHeading>
+                        <AccordionItemButton>
+                            {placeholder.heading}
+                        </AccordionItemButton>
+                    </AccordionItemHeading>
+                    <AccordionItemPanel animated>{placeholder.panel}</AccordionItemPanel>
+                </AccordionItem>
+            ))}
+        </Accordion>
+
+        <Code code={ExampleAnimated} />
 
         <h2 className="u-margin-top">Pre-expanded items</h2>
 

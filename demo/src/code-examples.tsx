@@ -66,6 +66,21 @@ export const ExampleAllowZeroExpanded = `<Accordion allowZeroExpanded>
     ))}
 </Accordion>`;
 
+export const ExampleAnimated = `<Accordion allowZeroExpanded>
+    {items.map((item) => (
+        <AccordionItem key={item.uuid}>
+            <AccordionItemHeading>
+                <AccordionItemButton>
+                    {item.heading}
+                </AccordionItemButton>
+            </AccordionItemHeading>
+            <AccordionItemPanel animated>
+              {item.content}
+            </AccordionItemPanel>
+        </AccordionItem>
+    ))}
+</Accordion>`;
+
 export const ExamplePreExpanded = `<Accordion preExpanded={['a', 'c']}>
   <AccordionItem uuid="a" /> // Will be expanded by default
   <AccordionItem uuid="b" />
@@ -92,7 +107,7 @@ export const ExampleAccordionItemState = `<Accordion>
     <AccordionItem>
         <AccordionItemHeading>
             <AccordionItemButton>
-                This item is 
+                This item is
                 <AccordionItemState>
                     {({ expanded }) => (expanded ? 'expanded' : 'collapsed')}
                 </AccordionItemState>

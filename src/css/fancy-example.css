@@ -43,24 +43,16 @@
 }
 
 [hidden] {
-    display: none;
+	visibility: hidden;
+}
+
+.accordion__panel-wrapper {
+	display: block;
+	height: 0;
+	transition: height 0.6s ease-out, visibility 0.6s;
+	overflow: hidden;
 }
 
 .accordion__panel {
     padding: 20px;
-    animation: fadein 0.35s ease-in;
-}
-
-/* -------------------------------------------------- */
-/* ---------------- Animation part ------------------ */
-/* -------------------------------------------------- */
-
-@keyframes fadein {
-    0% {
-        opacity: 0;
-    }
-
-    100% {
-        opacity: 1;
-    }
 }
