@@ -1,5 +1,5 @@
 {
-    "name": "react-accessible-accordion",
+    "name": "@gnu/react-accessible-accordion",
     "version": "4.0.0",
     "description": "Accessible Accordion component for React",
     "main": "dist/umd/index.js",
