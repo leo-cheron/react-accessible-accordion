@@ -29,7 +29,9 @@ const Panel = ({
                         if(ref.current) ref.current.style.height = '0';
                     })
                 }
-            }
+            } else if(firstRender.current && !hidden) {
+				if(ref.current) ref.current.style.height = 'auto';
+			}
             firstRender.current = false;
         }, [hidden])
     }
