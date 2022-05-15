@@ -1,8 +1,7 @@
 import * as React from 'react';
-import {TransitionEvent} from 'react';
-import {DivAttributes} from '../helpers/types';
-import {assertValidHtmlId} from '../helpers/uuid';
-import {Consumer as ItemConsumer, ItemContext} from './ItemContext';
+import { DivAttributes } from '../helpers/types';
+import { assertValidHtmlId } from '../helpers/id';
+import { Consumer as ItemConsumer, ItemContext } from './ItemContext';
 
 type Props = DivAttributes & {region?: boolean; className?: string; animated?: boolean};
 type PanelProps = DivAttributes & {region?: boolean; className?: string; animated?: boolean; hidden?: boolean};
@@ -76,7 +75,9 @@ const AccordionItemPanel = ({
         }
         const attrs = {
             ...panelAttributes,
-            'aria-labelledby': region ? panelAttributes['aria-labelledby'] : undefined,
+            'aria-labelledby': region
+                ? panelAttributes['aria-labelledby']
+                : undefined,
         };
 
         return (
