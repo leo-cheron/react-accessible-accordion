@@ -3,11 +3,12 @@ import { DivAttributes } from '../helpers/types';
 import { assertValidHtmlId } from '../helpers/id';
 import { Consumer as ItemConsumer, ItemContext } from './ItemContext';
 
-type Props = DivAttributes & {region?: boolean; className?: string; animated?: boolean};
-type PanelProps = DivAttributes & {region?: boolean; className?: string; animated?: boolean; hidden?: boolean};
+type Props = DivAttributes & {region?: boolean; className?: string; wrapperClassName?: string, animated?: boolean};
+type PanelProps = DivAttributes & {region?: boolean; className?: string; wrapperClassName?: string, animated?: boolean; hidden?: boolean};
 
 const Panel = ({
     className,
+    wrapperClassName,
     hidden = false,
     animated,
     ...rest
@@ -53,7 +54,7 @@ const Panel = ({
     return (
         <>
             {animated ? (
-                <div ref={ref} hidden={hidden} className={`${className}-wrapper`} onTransitionEnd={handleTransitionEnd}>
+                <div ref={ref} hidden={hidden} className={wrapperClassName} onTransitionEnd={handleTransitionEnd}>
                     {renderChildren(false)}
                 </div>
             ) : (
@@ -64,12 +65,14 @@ const Panel = ({
 }
 const AccordionItemPanel = ({
     className = 'accordion__panel',
+    wrapperClassName = 'accordion__panel-wrapper',
     region,
     animated,
     id,
     ...rest
 }: Props): JSX.Element => {
-    const renderChildren = ({panelAttributes}: ItemContext): JSX.Element => {
+
+	const renderChildren = ({panelAttributes}: ItemContext): JSX.Element => {
         if (id) {
             assertValidHtmlId(id);
         }
@@ -84,6 +87,7 @@ const AccordionItemPanel = ({
             <Panel
                 data-accordion-component="AccordionItemPanel"
                 className={className}
+                wrapperClassName={wrapperClassName}
                 animated={animated}
                 {...rest}
                 {...attrs}
