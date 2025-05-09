@@ -36,7 +36,7 @@ const Panel = ({
         }, [hidden])
     }
 
-    const handleTransitionEnd = (event: TransitionEvent) => {
+    const handleTransitionEnd = (event: any) => {
         if (event.currentTarget && event.propertyName === 'height') {
             (event.currentTarget as HTMLDivElement).style.height = hidden ? '0' : 'auto';
         }

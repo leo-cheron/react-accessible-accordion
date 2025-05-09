@@ -145,9 +145,12 @@ const App = (): JSX.Element => (
             If you set <strong>animated</strong> attribute to AccordionItemPanel, panel expansition will be animated.
         </p>
 
-        <Accordion allowZeroExpanded={true}>
+        <Accordion allowZeroExpanded={true} preExpanded={[placeholders[0].uuid]}>
             {placeholders.map((placeholder: Placeholder) => (
-                <AccordionItem key={placeholder.heading}>
+                <AccordionItem
+					key={placeholder.heading}
+                    uuid={placeholder.uuid}
+				>
                     <AccordionItemHeading>
                         <AccordionItemButton>
                             {placeholder.heading}
