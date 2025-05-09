@@ -17,7 +17,7 @@ export const SPEC_ERROR = `AccordionItemButton may contain only one child elemen
 
 From the WAI-ARIA spec (https://www.w3.org/TR/wai-aria-practices-1.1/#accordion):
 
-“The button element is the only element inside the heading element. That is, if there are other visually persistent elements, they are not included inside the heading element.”
+"The button element is the only element inside the heading element. That is, if there are other visually persistent elements, they are not included inside the heading element."
 
 `;
 
@@ -55,7 +55,7 @@ export class AccordionItemHeading extends React.PureComponent<Props> {
         AccordionItemHeading.VALIDATE(this.ref);
     }
 
-    render(): JSX.Element {
+    render(): React.ReactNode {
         return (
             <div
                 data-accordion-component="AccordionItemHeading"
@@ -73,9 +73,9 @@ type WrapperProps = Pick<
 
 const AccordionItemHeadingWrapper: React.FC<DivAttributes> = (
     props: WrapperProps,
-): JSX.Element => (
+): React.JSX.Element => (
     <ItemConsumer>
-        {(itemContext: ItemContext): JSX.Element => {
+        {(itemContext: ItemContext): React.ReactNode => {
             const { headingAttributes } = itemContext;
 
             if (props.id) {

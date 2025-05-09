@@ -2,6 +2,7 @@ import * as React from 'react';
 import { DivAttributes } from '../helpers/types';
 import { Provider } from './AccordionContext';
 import { ID } from './ItemContext';
+import {ReactNode} from 'react';
 
 type AccordionProps = Pick<
     DivAttributes,
@@ -21,7 +22,7 @@ const Accordion = ({
     onChange,
     preExpanded,
     ...rest
-}: AccordionProps): JSX.Element => {
+}: AccordionProps): ReactNode => {
     return (
         <Provider
             preExpanded={preExpanded}

@@ -163,7 +163,7 @@ Make the element have a region role.
 
 ### AccordionItemState
 
-#### children : `({ expanded: boolean, disabled: boolean }): JSX.Element` [**required**]
+#### children : `({ expanded: boolean, disabled: boolean }): Element` [**required**]
 
 ---
 

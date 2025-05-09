@@ -8,8 +8,8 @@ type Props = Pick<DivAttributes, Exclude<keyof DivAttributes, 'children'>> & {
     ): React.ReactNode;
 };
 
-const AccordionItemState = ({ children }: Props): JSX.Element => {
-    const renderChildren = (itemContext: ItemContext): JSX.Element => {
+const AccordionItemState = ({ children }: Props): React.JSX.Element => {
+    const renderChildren = (itemContext: ItemContext): React.ReactNode => {
         const { expanded, disabled } = itemContext;
 
         return (

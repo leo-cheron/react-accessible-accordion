@@ -90,7 +90,7 @@ export class Provider extends React.PureComponent<
         return this.state.getButtonAttributes(key, dangerouslySetExpanded);
     };
 
-    render(): JSX.Element {
+    render(): React.ReactNode {
         const { allowZeroExpanded, allowMultipleExpanded } = this.state;
 
         return (
@@ -119,7 +119,7 @@ export class Consumer extends React.PureComponent<{
         return container ? this.props.children(container) : null;
     };
 
-    render(): JSX.Element {
+    render(): React.ReactNode {
         return <Context.Consumer>{this.renderChildren}</Context.Consumer>;
     }
 }

@@ -22,11 +22,11 @@ const AccordionItem = ({
     className = 'accordion__item',
     activeClassName,
     ...rest
-}: Props): JSX.Element => {
+}: Props): React.JSX.Element => {
     const [instanceUuid] = useState<ID>(useNextId());
     const uuid = customUuid ?? instanceUuid;
 
-    const renderChildren = (itemContext: ItemContext): JSX.Element => {
+    const renderChildren = (itemContext: ItemContext): React.ReactNode => {
         const { expanded } = itemContext;
         const cx = expanded && activeClassName ? activeClassName : className;
 

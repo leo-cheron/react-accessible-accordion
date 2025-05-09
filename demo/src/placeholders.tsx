@@ -6,7 +6,7 @@ import { v4 } from 'uuid';
 export type Placeholder = {
     uuid: string;
     heading: string;
-    panel: JSX.Element;
+    panel: Element;
 };
 
 const placeholders: Placeholder[] = [

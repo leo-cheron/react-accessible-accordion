@@ -93,9 +93,9 @@ type WrapperProps = Pick<
 
 const AccordionItemButtonWrapper: React.FC<WrapperProps> = (
     props: WrapperProps,
-): JSX.Element => (
+): React.JSX.Element => (
     <ItemConsumer>
-        {(itemContext: ItemContext): JSX.Element => {
+        {(itemContext: ItemContext): React.ReactNode => {
             const { toggleExpanded, buttonAttributes } = itemContext;
 
             return (

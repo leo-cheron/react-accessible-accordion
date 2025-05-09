@@ -12,7 +12,7 @@ const Panel = ({
     hidden = false,
     animated,
     ...rest
-}: PanelProps): JSX.Element => {
+}: PanelProps): React.JSX.Element => {
     const firstRender = React.useRef(true);
     const ref = React.useRef<HTMLDivElement>(null);
     const refContent = React.useRef<HTMLDivElement>(null);
@@ -70,9 +70,9 @@ const AccordionItemPanel = ({
     animated,
     id,
     ...rest
-}: Props): JSX.Element => {
+}: Props): React.JSX.Element => {
 
-	const renderChildren = ({panelAttributes}: ItemContext): JSX.Element => {
+	const renderChildren = ({panelAttributes}: ItemContext): React.ReactNode => {
         if (id) {
             assertValidHtmlId(id);
         }

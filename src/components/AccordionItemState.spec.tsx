@@ -34,7 +34,7 @@ describe('ItemContext', () => {
                                 expanded,
                             }: {
                                 expanded: boolean;
-                            }): JSX.Element => (
+                            }): Element => (
                                 <div data-testid={UUIDS.FOO}>
                                     {expanded && 'expanded'}
                                 </div>
@@ -47,7 +47,7 @@ describe('ItemContext', () => {
                                 expanded,
                             }: {
                                 expanded: boolean;
-                            }): JSX.Element => (
+                            }): Element => (
                                 <div data-testid={UUIDS.BAR}>
                                     {expanded && 'expanded'}
                                 </div>

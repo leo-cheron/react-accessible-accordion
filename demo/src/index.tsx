@@ -35,7 +35,7 @@ import './main.css';
 import '../../src/css/fancy-example.css';
 
 // tslint:disable-next-line max-func-body-length
-const App = (): JSX.Element => (
+const App = (): Element => (
     <>
         <h1>React Accessible Accordion</h1>
 

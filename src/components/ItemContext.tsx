@@ -42,14 +42,14 @@ const Provider = ({
     uuid,
     accordionContext,
     dangerouslySetExpanded,
-}: ProviderProps): JSX.Element => {
+}: ProviderProps): React.JSX.Element => {
     const toggleExpanded = (): void => {
         accordionContext.toggleExpanded(uuid);
     };
 
     const renderChildren = (
         accordionContext: AccordionContext,
-    ): JSX.Element => {
+    ): React.ReactNode => {
         const expanded =
             dangerouslySetExpanded ?? accordionContext.isItemExpanded(uuid);
         const disabled = accordionContext.isItemDisabled(uuid);
@@ -87,9 +87,9 @@ const Provider = ({
 
 const ProviderWrapper: React.FunctionComponent<ProviderWrapperProps> = (
     props: ProviderWrapperProps,
-): JSX.Element => (
+): React.JSX.Element => (
     <AccordionContextConsumer>
-        {(accordionContext: AccordionContext): JSX.Element => (
+        {(accordionContext: AccordionContext): React.ReactNode => (
             <Provider {...props} accordionContext={accordionContext} />
         )}
     </AccordionContextConsumer>
@@ -101,7 +101,7 @@ type ConsumerProps = {
     children(container: ItemContext): React.ReactNode;
 };
 
-export const Consumer = ({ children }: ConsumerProps): JSX.Element => {
+export const Consumer = ({ children }: ConsumerProps): React.JSX.Element => {
     const renderChildren = (container: ItemContext | null): React.ReactNode => {
         return container ? children(container) : null;
     };
